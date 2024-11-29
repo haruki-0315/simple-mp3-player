@@ -15,19 +15,22 @@
     <audio id="audioPlayer" controls style="display:none;"></audio>
 
     <script>
-        const form = document.getElementById('mp3Form');
-        const audioPlayer = document.getElementById('audioPlayer');
+       const form = document.getElementById('mp3Form');
+const audioPlayer = document.getElementById('audioPlayer');
 
-        form.addEventListener('submit', (event) => {
-            event.preventDefault();
-            const mp3Url = document.getElementById('mp3Url').value;
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const mp3Url = document.getElementById('mp3Url').value;
 
-            // 入力されたURLをaudio要素に設定
-            audioPlayer.src = mp3Url;
-            audioPlayer.style.display = 'block';
-            audioPlayer.play()
-                .catch(err => alert("再生できません: " + err.message));
-        });
+    // サーバー側のプロキシエンドポイントを使用
+    const proxyUrl = `/proxy?url=${encodeURIComponent(mp3Url)}`;
+
+    // 入力されたURLをaudio要素に設定
+    audioPlayer.src = proxyUrl;
+    audioPlayer.style.display = 'block';
+    audioPlayer.play()
+        .catch(err => alert("再生できません: " + err.message));
+});
     </script>
 </body>
 </html>
