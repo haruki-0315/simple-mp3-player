@@ -3,7 +3,7 @@ const path = require('path');
 const axios = require('axios');
 
 const app = express();
-const PORT = 3000;
+const PORT = 8000;
 
 // 静的ファイルを提供するディレクトリ
 app.use(express.static(path.join(__dirname, 'public')));
