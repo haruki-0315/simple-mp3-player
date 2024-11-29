@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MP3再生サービス</title>
+</head>
+<body>
+    <h1>MP3再生サービス</h1>
+    <form id="mp3Form">
+        <label for="mp3Url">MP3ファイルのURLを入力してください:</label>
+        <input type="text" id="mp3Url" name="mp3Url" placeholder="https://example.com/sample.mp3" required>
+        <button type="submit">再生</button>
+    </form>
+    <audio id="audioPlayer" controls style="display:none;"></audio>
+
+    <script>
+        const form = document.getElementById('mp3Form');
+        const audioPlayer = document.getElementById('audioPlayer');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const mp3Url = document.getElementById('mp3Url').value;
+
+            // 入力されたURLをaudio要素に設定
+            audioPlayer.src = mp3Url;
+            audioPlayer.style.display = 'block';
+            audioPlayer.play()
+                .catch(err => alert("再生できません: " + err.message));
+        });
+    </script>
+</body>
+</html>
